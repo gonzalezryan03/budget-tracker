@@ -77,3 +77,21 @@ exports.updateMonthlyGoal = (req, res) => {
     months: data.months
   });
 };
+
+exports.getSingleMonthData = (req, res) => {
+    const { month } = req.params;
+    const data = readDataFile();
+    
+    if (!data.months || !data.months[month]) {
+        return res.status(404).json({ message: 'Month not found' });
+    }
+    
+    const monthData = data.months[month];
+    const monthlyIncome = 100000 / 12; // This should come from user profile
+    const remaining = monthlyIncome - (monthData.spending || 0);
+    
+    return res.status(200).json({
+        ...monthData,
+        remaining
+    });
+};

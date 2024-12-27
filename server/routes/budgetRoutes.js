@@ -5,6 +5,9 @@ const budgetController = require('../controllers/budgetController');
 // Retrieve data for all months
 router.get('/', budgetController.getMonthData);
 
+// Retrieve data for a single month
+router.get('/:month', budgetController.getSingleMonthData);
+
 // Update monthly spending
 router.put('/spending', budgetController.updateMonthlySpending);
 
