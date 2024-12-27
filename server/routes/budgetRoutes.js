@@ -14,4 +14,7 @@ router.put('/spending', budgetController.updateMonthlySpending);
 // Update monthly goal
 router.put('/goal', budgetController.updateMonthlyGoal);
 
+// Add daily expense
+router.post('/expense', budgetController.addDailyExpense);
+
 module.exports = router;

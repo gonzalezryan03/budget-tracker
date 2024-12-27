@@ -1,12 +1,24 @@
 {
-    "months": {
-      "January": {
-        "spending": 0,
-        "goal": 0
-      },
-      "February": {
-        "spending": 0,
-        "goal": 0
-      }
+  "months": {
+    "January": {
+      "spending": 0,
+      "goal": 0
+    },
+    "February": {
+      "spending": 0,
+      "goal": 0
+    },
+    "December": {
+      "spending": 500,
+      "goal": 0
     }
+  },
+  "dailyExpenses": {
+    "2024-12-23": [
+      {
+        "amount": 500,
+        "description": "Christmas Gifts"
+      }
+    ]
   }
+}

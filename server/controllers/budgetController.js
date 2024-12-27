@@ -95,3 +95,33 @@ exports.getSingleMonthData = (req, res) => {
         remaining
     });
 };
+
+exports.addDailyExpense = (req, res) => {
+    const { date, amount, description } = req.body;
+    const data = readDataFile();
+    
+    if (!data.dailyExpenses) {
+        data.dailyExpenses = {};
+    }
+    
+    if (!data.dailyExpenses[date]) {
+        data.dailyExpenses[date] = [];
+    }
+    
+    data.dailyExpenses[date].push({ amount, description });
+    
+    // Update monthly total
+    const month = new Date(date).toLocaleString('default', { month: 'long' });
+    if (!data.months[month]) {
+        data.months[month] = { spending: 0, goal: 0 };
+    }
+    data.months[month].spending = (data.months[month].spending || 0) + amount;
+    
+    writeDataFile(data);
+    
+    return res.status(200).json({
+        message: 'Expense added successfully',
+        dailyExpenses: data.dailyExpenses,
+        months: data.months
+    });
+};
